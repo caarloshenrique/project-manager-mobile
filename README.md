@@ -7,6 +7,7 @@ O projeto foi feito com as seguintes tecnologias:
 
 - [NodeJS](https://nodejs.org/en/)
 - [ExpressJS](https://expressjs.com/pt-br/)
+- [TypeScript](https://www.typescriptlang.org/)
 - [React Native](https://reactnative.dev/)
 - [React Navigation](https://reactnavigation.org/)
 - [Axios](https://github.com/axios/axios)
