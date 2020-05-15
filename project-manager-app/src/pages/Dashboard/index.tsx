@@ -54,25 +54,23 @@ const Dashboard: React.FC = () => {
   const emailInputRef = useRef<TextInput>(null);
   const passwordInputRef = useRef<TextInput>(null);
 
-  const [project, setProject] = useState<Project>();
+  const project = route.params.project;
 
-  const name = route.params.project.name;
+  const [name, setName] = useState<String>(project.name);
+  const [price, setPrice] = useState<Number>(project.price);
 
-  console.log(name);
-
-  const handleSignUp = useCallback(
+  const editProject = useCallback(
     async (data: SignUpFormData) => {
       try {
-        formRef.current?.setErrors({});
-
-        await api.post('projects', data);
+        console.log('Project', name, price);
+        await api.put(`projects/${project.id}`, { name, price });
 
         Alert.alert(
-          'Cadastro realizado com sucesso!',
-          'Você já pode fazer login na aplicação.',
+          'Sucesso!',
+          'As alterações foram registradas no banco de dados.',
         );
 
-        navigation.goBack();
+        navigation.navigate('SignIn');
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
           const errors = getValidationErrors(error);
@@ -81,8 +79,8 @@ const Dashboard: React.FC = () => {
         }
 
         Alert.alert(
-          'Erro no cadastro',
-          'Ocorreu um erro ao fazer o cadastro, tente novamente.',
+          'Erro',
+          'Não foi possível alterar os dados, tente novamente.',
         );
       }
     },
@@ -105,7 +103,7 @@ const Dashboard: React.FC = () => {
               <Title>Editar projeto</Title>
             </View>
 
-            <Form ref={formRef} onSubmit={handleSignUp}>
+            <Form ref={formRef} onSubmit={editProject}>
               <Input
                 autoCapitalize="words"
                 name="name"
@@ -115,17 +113,22 @@ const Dashboard: React.FC = () => {
                 onSubmitEditing={() => {
                   emailInputRef.current?.focus();
                 }}
+                value={name}
+                onChangeText={setName}
               />
 
               <Input
                 ref={passwordInputRef}
                 name="price"
                 icon="lock"
+                keyboardType="numeric"
                 placeholder="Preço"
                 returnKeyType="send"
                 onSubmitEditing={() => {
                   formRef.current?.submitForm();
                 }}
+                value={price}
+                onChangeText={setPrice}
               />
 
               <Button

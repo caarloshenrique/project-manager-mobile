@@ -10,6 +10,8 @@
 ## Uso :hammer_and_wrench:
 
 ```
+$ git clone https://github.com/caarloshenrique/project-manager-api.git
+$ cd project-manager-api
 $ yarn
 ```
 

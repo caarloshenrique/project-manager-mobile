@@ -31,4 +31,22 @@ module.exports = {
 
     return res.json(project);
   },
+
+  async update(req, res) {
+    try {
+      const { project_id } = req.params;
+      const project = await Project.findByPk(project_id);
+
+      if (!project) {
+        return res.status(400).json({ error: "Project not found" });
+      }
+
+      await project.update(req.body);
+
+      return res.json();
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
 };

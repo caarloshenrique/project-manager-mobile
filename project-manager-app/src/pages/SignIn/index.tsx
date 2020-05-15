@@ -1,12 +1,14 @@
 import React, { useCallback, useRef, useEffect, useState } from 'react';
 import {
-  Image,
   View,
   ScrollView,
   KeyboardAvoidingView,
   Platform,
   TextInput,
   Alert,
+  FlatList,
+  Text,
+  TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
@@ -26,12 +28,11 @@ import Button from '../../components/Button';
 import {
   Container,
   Title,
-  DeleteButton,
-  DeleteButtonText,
   CreateAccountButton,
   CreateAccountButtonText,
-  ProjectTitle,
   CardProject,
+  DeleteButton,
+  DeleteButtonText,
 } from './styles';
 
 interface SignInFormData {
@@ -51,22 +52,27 @@ const SignIn: React.FC = () => {
 
   const navigation = useNavigation();
 
+  function navigateToEdit(project) {
+    navigation.navigate('Dashboard', { project });
+  }
+
   const { signIn } = useAuth();
 
   const [projects, setProjects] = useState<Project[]>([]);
 
-  useEffect(() => {
-    async function loadProjects(): Promise<void> {
-      const response = await api.get('projects');
-      console.log(response);
-      setProjects(response.data);
-    }
+  async function loadProjects(): Promise<void> {
+    const response = await api.get('projects');
+    setProjects(response.data);
+  }
 
+  useEffect(() => {
     loadProjects();
   }, []);
 
   async function deleteProject(id) {
     await api.delete(`projects/${id}`);
+    Alert.alert('Sucesso', 'O projeto foi deletado do banco de dados.');
+    loadProjects();
   }
 
   return (
@@ -83,11 +89,17 @@ const SignIn: React.FC = () => {
           <Container>
             <View>
               <Title>Projetos</Title>
-              {projects.map(function (object) {
-                return (
-                  <CardProject key={object.id}>
-                    <ProjectTitle>{object.name}</ProjectTitle>
-                    <ProjectTitle>R${object.price}</ProjectTitle>
+
+              <FlatList
+                data={projects}
+                keyExtractor={(project) => String(project.id)}
+                showsVerticalScrollIndicator={false}
+                onEndReached={loadProjects}
+                onEndReachedThreshold={0.2}
+                renderItem={({ item: project }) => (
+                  <CardProject>
+                    <Text>{project.name}</Text>
+                    <Text>Valor: {project.price}</Text>
                     <View
                       style={{
                         flexDirection: 'row',
@@ -96,25 +108,22 @@ const SignIn: React.FC = () => {
                     >
                       <DeleteButton>
                         <DeleteButtonText
-                          onPress={() =>
-                            navigation.navigate('Dashboard', { object })
-                          }
+                          onPress={() => navigateToEdit(project)}
                         >
                           Editar
                         </DeleteButtonText>
                       </DeleteButton>
-                      <View></View>
                       <DeleteButton>
                         <DeleteButtonText
-                          onPress={() => deleteProject(object.id)}
+                          onPress={() => deleteProject(project.id)}
                         >
                           Excluir
                         </DeleteButtonText>
                       </DeleteButton>
                     </View>
                   </CardProject>
-                );
-              })}
+                )}
+              />
             </View>
           </Container>
         </ScrollView>

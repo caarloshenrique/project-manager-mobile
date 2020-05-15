@@ -43,7 +43,7 @@ const SignUp: React.FC = () => {
 
         Alert.alert(
           'Cadastro realizado com sucesso!',
-          'Você já pode fazer login na aplicação.',
+          'Os dados foram registrados corretamente no banco de dados',
         );
 
         navigation.goBack();
@@ -114,7 +114,7 @@ const SignUp: React.FC = () => {
         </ScrollView>
       </KeyboardAvoidingView>
 
-      <BackToSignIn onPress={() => navigation.goBack()}>
+      <BackToSignIn onPress={() => navigation.navigate('SignIn')}>
         <Icon name="arrow-left" size={20} color="#fff" />
         <BackToSignInText>Ver lista de projetos</BackToSignInText>
       </BackToSignIn>
