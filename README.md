@@ -14,7 +14,42 @@ O projeto foi feito com as seguintes tecnologias:
 - [Styled-Components](https://styled-components.com/)
 {...}
 
-## Licença :page_facing_up:
+### :fire: Executando a aplicação
+
+#### Back-end
+##### Configuração
+```
+$ cd project-manager-api
+$ yarn
+```
+Ajustar parâmetros de usuário e senha do arquivo `database.js` em `project-manager-api/src/config/database.js` de acordo com as credencias do seu banco de dados
+```
+$ yarn sequelize db:create
+$ yarn sequelize db:migrate
+```
+##### Execução
+```
+$ yarn dev
+```
+
+#### Front-end
+##### Configuração
+
+Ajustar a BaseURL do arquivo `api.ts` em `project-manager-app/src/services/api.ts` de acordo com o emulador que for utilizar para executar a aplicação
+```
+$ cd project-manager-app
+$ yarn start
+```
+##### Execução
+```
+$ yarn android
+```
+ou
+```
+yarn ios
+```
+
+## :page_facing_up: Licença 
 
 [MIT](/LICENSE) &copy; Carlos Henrique da Costa Silva
 
