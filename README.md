@@ -59,7 +59,6 @@ $ yarn ios
 ```
 
 ## :page_facing_up: Licença 
-
-[MIT](/LICENSE) &copy; Carlos Henrique da Costa Silva
+Este projeto é desenvolvido sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para saber mais detalhes.
 
 <p align="center" style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px;">Feito com :purple_heart: by <strong> Carlos Henrique da Costa Silva </strong> </p>
