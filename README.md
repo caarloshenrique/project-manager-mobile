@@ -36,6 +36,13 @@ $ yarn dev
 ##### Configuração
 
 Ajustar a BaseURL do arquivo `api.ts` em `project-manager-app/src/services/api.ts` de acordo com o emulador que for utilizar para executar a aplicação
+
+##### Endereços para cada emulador/simulador:
+* Genymotion:              http://10.0.3.2:3333/
+* Emulador Android Studio: http://10.0.2.2:3333/
+* Simulador IOS:           http://localhost:3333/
+
+
 ```
 $ cd project-manager-app
 $ yarn start
