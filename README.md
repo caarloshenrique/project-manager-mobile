@@ -1,9 +1,9 @@
 # project-manager-mobile
 :memo: Um aplicativo mobile para gerenciamento de projetos.
 
-## :rocket: Tecnologias Usadas
+## :rocket: Tecnologias utilizadas
 
-O projeto foi feito com as seguintes tecnologias:
+O projeto foi feito utilizando as seguintes tecnologias:
 
 - [NodeJS](https://nodejs.org/en/)
 - [ExpressJS](https://expressjs.com/pt-br/)
