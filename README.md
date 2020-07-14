@@ -29,7 +29,7 @@ O projeto foi feito utilizando as seguintes tecnologias:
 $ cd project-manager-api
 $ yarn
 ```
-Ajustar parâmetros de usuário e senha do arquivo `database.js` em `project-manager-api/src/config/database.js` de acordo com as credencias do seu banco de dados
+Ajustar parâmetros de usuário e senha do arquivo [database.js](project-manager-api/src/config/database.js) em `project-manager-api/src/config/database.js` de acordo com as credencias do seu banco de dados
 ```
 $ yarn sequelize db:create
 $ yarn sequelize db:migrate
