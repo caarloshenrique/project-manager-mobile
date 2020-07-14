@@ -42,7 +42,7 @@ $ yarn dev
 ### :cyclone: Front-end
 #### Configuração
 
-Ajustar a BaseURL do arquivo `api.ts` em `project-manager-app/src/services/api.ts` de acordo com o emulador que for utilizar para executar a aplicação
+Ajustar a BaseURL do arquivo [api.ts](project-manager-app/src/services/api.ts) em `project-manager-app/src/services/api.ts` de acordo com o emulador que for utilizar para executar a aplicação
 
 ##### Endereços para cada emulador/simulador:
 * Genymotion:              http://10.0.3.2:3333/
